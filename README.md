@@ -10,7 +10,7 @@ Alternate and slightly faster implementation of [map2](https://www.npmjs.com/pac
 
 
 ```js
-import 'twokeys'
+import '2keys'
 
 const map = new Map()
 map.set([1, 2], 3)
