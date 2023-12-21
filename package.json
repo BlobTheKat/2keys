@@ -1,17 +1,17 @@
 {
-  "name": "twokeys",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+	"name": "twokeys",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "github.com/BlobTheKat/twokeys"
+	},
 	"type": "module",
-	"exports": {
-    "import": "./index.js",
-    "require": "./index.common.js"
-  },
-  "keywords": ["map", "es6", "map2", "tuple", "set", "set2"],
-  "author": "",
-  "license": "MIT"
+	"keywords": ["map", "es6", "map2", "tuple", "set", "set2"],
+	"author": "",
+	"license": "MIT"
 }
