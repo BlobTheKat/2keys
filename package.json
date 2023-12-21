@@ -1,6 +1,6 @@
 {
 	"name": "2keys",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -10,8 +10,7 @@
 		"type": "git",
 		"url": "github.com/BlobTheKat/2keys"
 	},
-	"type": "module",
-	"keywords": ["map", "es6", "map2", "tuple", "set", "set2"],
+	"keywords": ["map", "es6", "map2", "tuple", "set", "set2", "keys", "hashmap", "hashset"],
 	"author": "",
 	"license": "MIT"
 }

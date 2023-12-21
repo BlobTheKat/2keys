@@ -1,5 +1,5 @@
 globalThis.Map2 = class Map2 extends Map{
-	get size(){let s=0;for(const i of this.values())s+=i.size;return s}
+	get size(){let s=0;for(const i of super.values())s+=i.size;return s}
 	constructor(entries){
 		super()
 		if(entries) for(const {0:a,1:b,2:c} of entries) this.set(a,b,c)
@@ -84,6 +84,17 @@ globalThis.Map2 = class Map2 extends Map{
 	forEach(fn){
 		for(const [k, m] of super.entries()) for(const [k2, v] of m) fn(v,k,k2, this)
 	}
+	[Symbol.for('nodejs.util.inspect.custom')](depth, o, inspect){
+		const s = this.size
+		if(!s) return 'Map2(0) {}'
+		if(!depth) return '\x1b[34m[Map2]\x1b[m'
+		const e = []
+		for(const {0:k1,1:k2,2:v} of this)
+			e.push('(' + inspect(k1, o) + ', ' + inspect(k2, o) + ') => ' + inspect(v, o))
+		if(e.reduce((a,b) => a+b.length+2, 0)-2 > 200)
+			return `Map2(${s}) {\n  ` + e.join(',\n  ') + '\n}'
+		else return `Map2(${s}) { ` + e.join(', ') + ' }'
+	}
 }
 
 globalThis.Set2 = class Set2 extends Map{
@@ -99,7 +110,7 @@ globalThis.Set2 = class Set2 extends Map{
 	add(a, b){
 		const s = super.get(a)
 		if(s) s.add(b)
-		else super.set(a, new Set([b]))
+		else super.set(a, new Set().add(b))
 		return this
 	}
 	swap(a, b){
@@ -147,8 +158,20 @@ globalThis.Set2 = class Set2 extends Map{
 	forEach(fn){
 		for(const [k, m] of super.entries()) for(const k2 of m) fn(k,k2,[k,k2],this)
 	}
+	[Symbol.for('nodejs.util.inspect.custom')](depth, o, inspect){
+		const s = this.size
+		if(!s) return 'Set2(0) {}'
+		if(!depth) return '\x1b[34m[Set2]\x1b[m'
+		const e = []
+		for(const {0:k1,1:k2} of this)
+			e.push('(' + inspect(k1, o) + ', ' + inspect(k2, o) + ')')
+		if(e.reduce((a,b) => a+b.length+2, 0)-2 > 200)
+			return `Set2(${s}) {\n  ` + e.join(',\n  ') + '\n}'
+		else return `Set2(${s}) { ` + e.join(', ') + ' }'
+	}
 }
 {
+	Object.defineProperty(Map2.prototype, Symbol.iterator, Object.getOwnPropertyDescriptor(Map2.prototype, 'entries'))
 	const k = Object.getOwnPropertyDescriptor(Set2.prototype, 'keys')
 	Object.defineProperty(Set2.prototype, Symbol.iterator, k)
 	Object.defineProperty(Set2.prototype, 'values', k)
