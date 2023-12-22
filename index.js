@@ -27,8 +27,10 @@ globalThis.Map2 = class Map2 extends Map{
 	}
 	delete(a, b){
 		const s = super.get(a)
-		if(s && !(s.delete(b),s.size)) return super.delete(a)
-		else return false
+		if(!s) return false
+		const b = s.delete(b)
+		if(!s.size) super.delete(a)
+		return b
 	}
 	pop(a, b){
 		let v
@@ -120,8 +122,10 @@ globalThis.Set2 = class Set2 extends Map{
 	}
 	delete(a, b){
 		const s = super.get(a)
-		if(s && !(s.delete(b),s.size)) return super.delete(a)
-		else return false
+		if(!s) return false
+		const b = s.delete(b)
+		if(!s.size) super.delete(a)
+		return b
 	}
 	has(a, b){
 		const s = super.get(a)
